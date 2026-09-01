@@ -1,5 +1,7 @@
 # echo-chamber
 
+> 📃 Paper: **[arXiv:2601.05742](https://arxiv.org/abs/2601.05742)**
+
 Code and examples for Echo Chamber LLM Jailbreak.
 
 ![Echo Chamber Example](./imgs/echo-chamber-example.svg)
@@ -13,6 +15,18 @@ To run experiments, you can use the [experiments/run_experiment.py](experiments/
 ## Jailbreak Examples
 
 You can check jailbreak examples across multiple AI models in the [jailbreak_examples/](jailbreak_examples/) folder.
+
+## Mitigation
+ 
+Echo Chamber works by gradually steering a conversation's context rather
+than through any single malicious prompt, which is why single-turn input
+filters miss it. Defending against it requires evaluating conversational
+state across turns, not just the current message.
+ 
+[TrustGate](https://github.com/NeuralTrust/TrustGate), our open-source AI
+gateway, implements multi-turn context analysis as a guardrail at the
+gateway layer.
+
 
 ## Getting Started
 
@@ -119,6 +133,41 @@ Type checking:
 pyrefly init
 pyrefly check echo_chamber
 ```
+
+
+## Citation
+ 
+```bibtex
+@misc{echochamber2026,
+  title         = {Echo Chamber: A Context-Poisoning Jailbreak Technique
+                   for Large Language Models},
+  author        = {[AUTHOR NAMES]},
+  year          = {2026},
+  eprint        = {2601.05742},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2601.05742}
+}
+```
+
+## FAQ
+ 
+**What is the Echo Chamber jailbreak?**
+A context-poisoning technique that gradually steers a multi-turn
+conversation's context rather than using any single malicious prompt,
+evading filters that only evaluate one message at a time. Full
+details in the paper: https://arxiv.org/abs/2601.05742
+ 
+**Was this responsibly disclosed?**
+Yes, to affected model providers before publication.
+ 
+**Does TrustGate protect against it?**
+Yes — see Mitigation above.
+
+## Responsible use
+ 
+This repository is published for defensive research. Do not use this
+code against systems you do not own or have explicit written
+permission to test.
 
 ## Join NeuralTrust
 
